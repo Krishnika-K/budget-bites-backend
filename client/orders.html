@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order List - Budget Bites</title>
+    <link rel="stylesheet" href="orders.css" />
+  </head>
+  <body>
+    <h1>📋 All Orders</h1>
+    <div id="orders-container" class="orders-grid"></div>
+
+    <script>
+      async function fetchOrders() {
+        try {
+          const res = await fetch("http://localhost:5000/api/orders");
+          const data = await res.json();
+          const container = document.getElementById("orders-container");
+
+          if (data.length === 0) {
+            container.innerHTML = "<p>No orders placed yet.</p>";
+            return;
+          }
+
+          data.forEach((order) => {
+            const orderCard = document.createElement("div");
+            orderCard.className = "order-card";
+
+            let itemsList = "";
+            order.items.forEach((item) => {
+              itemsList += `<li>${item.name} × ${item.quantity}</li>`;
+            });
+
+            orderCard.innerHTML = `
+              <h3>Order by: ${order.userEmail}</h3>
+              <ul>${itemsList}</ul>
+              <p><strong>Total:</strong> ₹${order.total}</p>
+              <p><strong>Status:</strong> ${order.status}</p>
+              <p><em>${new Date(order.createdAt).toLocaleString()}</em></p>
+            `;
+            container.appendChild(orderCard);
+          });
+        } catch (error) {
+          console.error("Error loading orders:", error);
+        }
+      }
+
+      window.onload = fetchOrders;
+    </script>
+  </body>
+</html>

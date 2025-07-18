@@ -1,0 +1,371 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: seagreen;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav h1 {
+  color: burlywood;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+nav ul a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+nav ul a:hover {
+  border-bottom: 2px solid white;
+}
+
+nav div button {
+  margin-left: 10px;
+  padding: 6px 15px;
+  background-color: peachpuff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+nav div button:hover {
+  background-color: gray;
+  color: white;
+}
+
+/* Hero Section */
+#home {
+  background-image: url("bg1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.home .content {
+  text-align: center;
+  max-width: 700px;
+}
+
+.home .content h4 {
+  font-size: 2.8rem;
+  color: rgb(4, 34, 59);
+}
+
+.home .content h4 span {
+  color: orange;
+}
+
+.home .content p {
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
+.home .content a button {
+  padding: 10px 25px;
+  background-color: peachpuff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Dynamic Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  background-color: #f9f9f9;
+}
+
+.menu-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.menu-card:hover {
+  transform: scale(1.03);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.menu-card h3 {
+  margin: 15px 0 5px;
+  color: seagreen;
+  font-size: 1.2rem;
+}
+
+.menu-card p {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.menu-card button {
+  margin-bottom: 15px;
+  padding: 8px 18px;
+  background-color: seagreen;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-card button:hover {
+  background-color: darkgreen;
+}
+
+/* About Section */
+#heading {
+  padding: 50px 30px;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+#heading h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#heading p {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+  font-size: 1.2rem;
+}
+
+/* Contact Section */
+#contact {
+  background-color: whitesmoke;
+  padding: 60px 40px;
+}
+
+.call {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.contact .box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.left,
+.right {
+  flex: 1 1 45%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.left h3,
+.right h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: seagreen;
+}
+
+.input-group label {
+  display: block;
+  margin-top: 10px;
+  color: #1c00b5;
+  font-weight: bold;
+}
+
+.input-group input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.submit {
+  margin-top: 20px;
+  background-color: rgb(70, 70, 132);
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+table td {
+  padding: 10px;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .box {
+    flex-direction: column;
+  }
+
+  .home .content h4 {
+    font-size: 2rem;
+  }
+
+  .home .content p {
+    font-size: 1.2rem;
+  }
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: seagreen;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#closeModal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 320px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  background-color: seagreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: darkgreen;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}

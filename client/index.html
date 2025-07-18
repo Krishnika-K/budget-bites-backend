@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="logo-removebg-preview.png" type="image/x-icon" />
+    <title>Budget Bites</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Order your favorite food with ease!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav>
+      <h1>BB foods</h1>
+      <ul>
+        <a href="#home"><li>Home</li></a>
+        <a href="#menu-container"><li>Order</li></a>
+        <a href="#heading"><li>About us</li></a>
+        <a href="#contact"><li>Contact</li></a>
+      </ul>
+      <div>
+        <button id="loginBtn" class="sigh in">Log in</button>
+        <button id="signupBtn" class="sigh in">Sign up</button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="home" id="home">
+      <div class="content">
+        <h4>
+          Order your <span style="color: orange">favorite food</span> at your
+          doorstep
+        </h4>
+        <p>Find your best food here...</p>
+        <a href="#menu-container"><button>Order now</button></a>
+      </div>
+      <div class="main">
+        <img src="main_img.png" alt="Image here" width="600px" height="500px" />
+      </div>
+    </section>
+
+    <!-- DYNAMIC MENU -->
+    <h2>🍽️ Our Budget Bites Menu</h2>
+    <div id="menu-container" class="menu-grid"></div>
+
+    <!-- ABOUT -->
+    <div id="heading">
+      <h2>About us</h2>
+      <p>
+        Welcome to Budget Bites, your ultimate destination for a delightful
+        culinary experience delivered right to your doorstep! We are passionate
+        food enthusiasts who believe that everyone deserves access to
+        mouthwatering meals without the hassle of cooking or dining out. Our
+        online food ordering platform is designed with love and dedication to
+        bring you a diverse range of cuisines, all in one place.
+      </p>
+      <br />
+      <p>
+        At BB foods, our mission is simple: to make your dining experience
+        convenient, enjoyable, and memorable. We are committed to connecting
+        food lovers with top-notch restaurants and chefs, ensuring that you can
+        savor your favorite dishes from the comfort of your home or office. We
+        strive to revolutionize the way you experience food by offering a
+        seamless online ordering process and prompt, reliable delivery services.
+      </p>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <h2 class="call">Contact us</h2>
+      <form>
+        <div class="box">
+          <div class="left">
+            <h3>Send your request</h3>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Name</label>
+                <input type="text" placeholder="" /><br />
+                <label>Mobile</label>
+                <input type="text" placeholder="" /><br />
+                <label>Email</label>
+                <input type="email" placeholder="" /><br />
+              </div>
+            </div>
+            <label>Message</label>
+            <textarea rows="5" placeholder="Text here..."></textarea>
+            <button class="submit">SEND</button>
+          </div>
+          <div class="right">
+            <h3>Reach us</h3>
+            <table>
+              <tr>
+                <td>Email</td>
+                <td>bbfoods@gmail.com</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>9807612345</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>3/74, RMD street, xyz, Bengaluru, 560001</td>
+              </tr>
+              <tr>
+                <td>Instagram</td>
+                <td>@BudgetBites_bb</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal">&times;</span>
+        <h3>Place Your Order</h3>
+        <input type="number" id="orderQty" placeholder="Quantity" min="1" />
+        <input type="email" id="orderEmail" placeholder="Email" />
+        <button id="submitOrder">Confirm Order</button>
+      </div>
+    </div>
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span id="closeAuth" class="close">&times;</span>
+        <h3 id="authTitle">Login</h3>
+        <form id="authForm">
+          <input
+            type="text"
+            id="authName"
+            placeholder="Name"
+            style="display: none"
+          />
+          <input type="email" id="authEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="authPassword"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" id="authSubmit">Login</button>
+        </form>
+        <p id="toggleAuthText">
+          Don't have an account?
+          <span id="toggleAuthLink" style="color: blue; cursor: pointer"
+            >Sign up</span
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let isLogin = true;
+
+        // Modal elements
+        const authModal = document.getElementById("authModal");
+        const authTitle = document.getElementById("authTitle");
+        const authForm = document.getElementById("authForm");
+        const authEmail = document.getElementById("authEmail");
+        const authPassword = document.getElementById("authPassword");
+        const authSubmit = document.getElementById("authSubmit");
+        const closeAuth = document.getElementById("closeAuth");
+        const toggleAuthText = document.getElementById("toggleAuthText");
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+
+        loginBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          isLogin = true;
+          openAuthModal();
+        });
+
+        signupBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          isLogin = false;
+          openAuthModal();
+        });
+
+        function openAuthModal() {
+          authTitle.textContent = isLogin ? "Login" : "Sign Up";
+          authSubmit.textContent = isLogin ? "Login" : "Sign Up";
+          // Show/hide name input
+          document.getElementById("authName").style.display = isLogin
+            ? "none"
+            : "block";
+          toggleAuthText.innerHTML = isLogin
+            ? `Don't have an account? <span class="toggle-link" style="color: blue; cursor: pointer;">Sign up</span>`
+            : `Already have an account? <span class="toggle-link" style="color: blue; cursor: pointer;">Login</span>`;
+          authModal.style.display = "flex";
+
+          // rebind the toggle link
+          setTimeout(() => {
+            const toggleLink = document.querySelector(".toggle-link");
+            if (toggleLink) {
+              toggleLink.addEventListener("click", () => {
+                isLogin = !isLogin;
+                openAuthModal();
+              });
+            }
+          }, 0);
+        }
+
+        closeAuth.onclick = () => {
+          authModal.style.display = "none";
+        };
+
+        authForm.onsubmit = async (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById("authName").value.trim();
+          const email = document.getElementById("authEmail").value.trim();
+          const password = document.getElementById("authPassword").value.trim();
+
+          if (!email || !password || (!isLogin && !name)) {
+            alert("Please fill all fields");
+            return;
+          }
+
+          const endpoint = isLogin ? "login" : "signup";
+
+          try {
+            const res = await fetch(
+              `http://localhost:5000/api/auth/${endpoint}`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                  isLogin ? { email, password } : { name, email, password }
+                ),
+              }
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+              localStorage.setItem("token", data.token);
+              alert("✅ " + data.message);
+              authModal.style.display = "none";
+              authForm.reset();
+            } else {
+              alert("❌ " + (data.error || "Invalid credentials"));
+            }
+          } catch (err) {
+            alert("Server error: " + err.message);
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
