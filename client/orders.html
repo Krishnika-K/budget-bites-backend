@@ -12,7 +12,9 @@
     <script>
       async function fetchOrders() {
         try {
-          const res = await fetch("http://localhost:5000/api/orders");
+          const res = await fetch(
+            "https://budget-bites-backend.up.railway.app/api/orders"
+          );
           const data = await res.json();
           const container = document.getElementById("orders-container");
 
